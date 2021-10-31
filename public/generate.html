@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        :root {
+            --main-color: rgba(128, 128, 128, .6);
+            --shadow-color: rgba(128, 128, 128, .5);
+            --output-color: rgba(128, 128, 128, 0.274);
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            appearance: none;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .form__number-input {
+            width: 100%;
+            border: 1px solid black;
+        }
+        
+        .box {
+            width: 30vw;
+            min-width: 20rem;
+            max-width: 60rem;
+
+            padding: 10px;
+
+            border: 1px solid var(--main-color, grey);
+            border-radius: 4px;
+            
+            box-shadow: var(--shadow-color, grey) 5px 5px 7px 0px;
+
+            animation: slide-in 1s; 
+
+            will-change: transform, opacity;
+        }        
+
+        .form__fieldsgroup {
+            display: grid;
+            gap: 10px;
+            text-align: center;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @keyframes slide-in {
+            from { 
+                transform: translateY(20%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .form__item {
+            margin-block: 10px;
+        }
+
+        .centered {
+            margin-inline: auto;
+
+            display: block;
+        }
+
+        .form__submit {
+            padding: .5rem;
+            
+            background-color: rgba(0, 0, 255, 0.514);
+
+            will-change: transform;
+            transition: transform .5s;
+        }
+
+        .form__submit:hover {
+            cursor: pointer;
+            transform: scale(1.1, 1.1);
+        }
+
+        .output {
+            max-width: 100%;
+            min-height: 2.5em;
+
+            display: block;
+
+            border-radius: 4px;
+
+            padding: 10px;
+
+            background-color: var(--output-color, grey);
+
+            word-break: break-word;
+        }
+
+        .output__memo {
+            transition: opacity .5s;
+            will-change: opacity;
+        }
+
+    </style>
+</head>
+<body>
+    <main class="box">
+        <form action="" class="form" name="main_form">
+            <fieldset class="form__item form__fieldsgroup">
+                <label>
+                    Начальная граница
+                    <input type="number" name="boundStart" class="form__number-input"
+                        value=30 step=1>
+                </label>
+                <label>
+                    Конечная граница
+                    <input type="number" name="boundEnd" class="form__number-input"
+                        value=50 step=1>
+                </label>
+            </fieldset>
+            <input type="submit" id="submit" value="Сгенерировать" class="form__item form__submit centered">
+        </form>
+
+        <section class="form__item output"><span class="output__memo" id="output"></span></section>
+    </main>
+
+    <script src="js/generate_functions.js"></script>
+</body>
+</html>
